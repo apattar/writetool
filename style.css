@@ -1,0 +1,56 @@
+
+.monospace {
+    font-family: monospace;
+}
+.sans {
+    font-family: sans-serif;
+}
+.serif {
+    font-family: serif;
+}
+.comic-sans {
+    font-family: "Comic Sans MS", "Comic Sans", 'Chalkboard SE', cursive;
+}
+.large-font {
+    font-size: xx-large;
+}
+#check, #response, #continue {
+    font-family: inherit;
+}
+
+.inactive {
+    display: none;
+}
+
+h1 {
+    margin: 2rem 0;
+    text-align: center;
+    font: xx-large monospace;
+}
+textarea {
+    width: 40rem;
+    height: 20rem;
+    display: block;
+    margin: 1rem 0;
+}
+fieldset {
+    margin: 1rem 0;
+}
+.pane {
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 2rem;
+    margin: 1rem;
+}
+#input-validation {
+    color: red;
+}
+#feedback {
+    margin: 1rem;
+    font-size: large;
+}
+button {
+    display: block;
+    margin: 1rem 0;
+    font-size: large;
+}

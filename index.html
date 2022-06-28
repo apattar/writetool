@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Write Tool</title>
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+  <h1>Write Tool</h1>
+
+  <section id="settings-pane" class="pane">
+    <label for="study-set-input">Input your study set below (copy/paste from vocab list, export from Quizlet, etc.):</label>
+    <textarea id="study-set-input"></textarea>
+
+    <fieldset>
+      <legend>Delimiters</legend>
+      <label for="card-delimiter">Between different cards: </label><input type="text" id="card-delimiter" value="\n" />
+      <br />
+      <label for="side-delimiter">Between terms and definitions: </label><input type="text" id="side-delimiter" value=" - " />
+      <p>You can use "\n" to indicate newlines, and "\t" for tabs.</p>
+    </fieldset>
+
+    <h2>Options</h2>
+
+    <fieldset>
+      <legend>Answer with...</legend>
+      <input type="radio" id="term-radio" name="answer-with" value="term" />
+      <label for="term-radio">Term</label>
+      <br />
+      <input type="radio" id="definition-radio" name="answer-with" value="definition" checked />
+      <label for="definition-radio">Definition</label>
+    </fieldset>
+
+    <input type="checkbox" id="shuffle" name="shuffle" checked />
+    <label for="shuffle">Shuffle Terms</label>
+
+    <fieldset>
+      <legend>Font</legend>
+      <input type="radio" id="monospace" name="font" value="monospace" checked />
+      <label class="monospace large-font" for="monospace">Monospace</label>
+      <br />
+      <input type="radio" id="sans" name="font" value="sans" />
+      <label class="sans large-font" for="sans">Sans-serif</label>
+      <br />
+      <input type="radio" id="serif" name="font" value="serif" />
+      <label class="serif large-font" for="serif">Serif</label>
+      <br />
+      <input type="radio" id="comic-sans" name="font" value="comic-sans" />
+      <label class="comic-sans large-font" for="comic-sans">Comic Sans</label>
+      <br />
+    </fieldset>
+
+    <p id="input-validation"></p>
+
+    <button id="go">Go!</button>
+  </section>
+
+  <section id="game-pane" class="pane inactive">
+    <div id="play-container">
+      <p id="prompt" class="large-font"></p>
+      <input type="text" id="response" class="large-font" /><span id="feedback"></span>
+      <button id="check">Check</button>
+    </div>
+    <div id="results-container" class="inactive">
+      <h2 id="results-heading"></h2>
+      <p id="round-score"></p>
+      <div id="results"></div>
+      <button id="continue">Continue</button>
+    </div>
+  </section>
+
+  <script type="text/javascript" src="script.js"></script>
+</body>
+</html>
