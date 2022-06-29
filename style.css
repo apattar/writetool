@@ -3,6 +3,9 @@
 }
 
 @media screen and (max-width: 450px) {
+    /* #feedback {
+        font-size: small !important;
+    } */
     #response {
         width: 100%;
         display: block;
@@ -12,11 +15,11 @@
 #feedback {
     border: 2px solid grey;
     border-radius: 5px;
-    padding: 0 1rem;
+    padding: 0.5rem 1rem;
     background-color: #f2f2f2;
     font-size: large;
-    min-height: 2.5em;
-    line-height: 2.5em; /* for vertical centering */
+    line-height: 1.5em;
+    min-height: 3em;
 }
 
 .monospace {

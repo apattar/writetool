@@ -6,7 +6,7 @@
   <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
-  <h1>Write Tool</h1>
+  <h1 id="main-header">Write Tool</h1>
 
   <section id="settings-pane" class="pane">
     <label for="study-set-input">Input your study set below (copy/paste from vocab list, export from Quizlet, etc.):</label>
@@ -52,14 +52,16 @@
 
     <p id="input-validation"></p>
 
+    <p>Tip: During the game, you can press "Enter" on your keyboard (or phone keyboard) to automatically press the "Check" button.</p>
+
     <button id="go">Go!</button>
   </section>
 
   <section id="game-pane" class="pane inactive">
     <div id="play-container">
-      <p id="feedback"></p>
       <p id="prompt" class="large-font"></p>
       <input type="text" id="response" autocorrect="off" autocapitalize="none" class="large-font" />
+      <p id="feedback"></p>
       <button id="check">Check</button>
     </div>
     <div id="results-container" class="inactive">

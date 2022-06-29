@@ -1,6 +1,7 @@
 // Author: github.com/apattar
 
 // collect important dom elements
+let mainHeader = document.getElementById("main-header");
 let settingsPane = document.getElementById("settings-pane");
 let gamePane = document.getElementById("game-pane");
 
@@ -114,6 +115,7 @@ goButton.onclick = function() {
     gameState.cardWeights = Array.from(gameState.fullDeckWeights);    // TODO temporary; instead get these from user
 
     // show the game pane
+    mainHeader.classList.add("inactive");
     settingsPane.classList.add("inactive");
     gamePane.classList.remove("inactive");
     
