@@ -33,7 +33,7 @@ let gameSettings = {
     answerWithTerm: false,
     shuffle: true,
     cardDelimiter: "\n",
-    sideDelimiter: " - ",
+    sideDelimiter: "\t",
     font: "monospace",
     feedbackTimeout: 1000, // TODO currently unchangeable by user
 
