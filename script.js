@@ -110,7 +110,7 @@ goButton.onclick = function() {
     gameState.startRound(1);
     
     // TODO move to weights pane submit button
-    gameState.fullDeckWeights = (new Array(gameState.cards.length)).fill(2);
+    gameState.fullDeckWeights = (new Array(gameState.cards.length)).fill(1);
     gameState.cardWeights = Array.from(gameState.fullDeckWeights);    // TODO temporary; instead get these from user
 
     // show the game pane
@@ -184,7 +184,7 @@ function showResults() {
             newPara.style.color = "red";
             newPara.innerHTML = gameSettings.incorrectIndicator + " ";
         }
-        newPara.innerHTML += card[0] + " – " + card[1] + "; times remaining: " + gameState.cardWeights[idx];
+        newPara.innerHTML += card[0] + " – " + card[1];
         resultsDiv.appendChild(newPara);
     });
 
