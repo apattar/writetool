@@ -1,10 +1,4 @@
 
-.inactive {
-    display: none;
-}
-
-
-/* fonts */
 .monospace {
     font-family: monospace;
 }
@@ -20,12 +14,14 @@
 .large-font {
     font-size: xx-large;
 }
-button, input {
+#check, #response, #continue {
     font-family: inherit;
 }
 
+.inactive {
+    display: none;
+}
 
-/* layout and appearance */
 h1 {
     margin: 2rem 0;
     text-align: center;

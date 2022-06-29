@@ -8,9 +8,7 @@
 <body>
   <h1>Write Tool</h1>
 
-  <noscript><section class="pane" style="background-color:lightcoral">Uh oh! It looks like you have JavaScript disabled in your browser. This site will not work without it; you can enable it and refresh to get the site to work.</section></noscript>
-
-  <section id="settings-pane" class="pane monospace">
+  <section id="settings-pane" class="pane">
     <label for="study-set-input">Input your study set below (copy/paste from vocab list, export from Quizlet, etc.):</label>
     <textarea id="study-set-input"></textarea>
 
@@ -54,24 +52,7 @@
 
     <p id="input-validation"></p>
 
-    <button id="settings-continue">Continue</button>
-  </section>
-
-  <section id="weights-pane" class="pane inactive">
-    <h2>Weights</h2>
-
-    <p>In the table below, you can input how many times you would like to get each term/definition correct in order to complete the game. For example, if a particular term/definition has a weight of 3, you will need to get it right thrice before the game will end.</p>
-
-    <table>
-      <thead>
-        <tr><th>Term & Definition</th><th>Weight</th></tr>
-      </thead>
-      <tbody id="weights-input-tbody">
-        <!-- inputs will go here -->
-      </tbody>
-    </table>
-
-    <button id="weights-continue">Start!</button>
+    <button id="go">Go!</button>
   </section>
 
   <section id="game-pane" class="pane inactive">
@@ -84,7 +65,7 @@
       <h2 id="results-heading"></h2>
       <p id="round-score"></p>
       <div id="results"></div>
-      <button id="results-continue">Continue</button>
+      <button id="continue">Continue</button>
     </div>
   </section>
 
