@@ -2,6 +2,7 @@
 
 // collect important dom elements
 let settingsPane = document.getElementById("settings-pane");
+let weightsPane = document.getElementById("weights-pane");
 let gamePane = document.getElementById("game-pane");
 
 let studySetInputTextarea = document.getElementById("study-set-input");
@@ -14,19 +15,21 @@ let sansRadio = document.getElementById("sans");
 let serifRadio = document.getElementById("serif");
 let comicSansRadio = document.getElementById("comic-sans");
 let inputValidationPara = document.getElementById("input-validation");
-let goButton = document.getElementById("go");
+let settingsContinueButton = document.getElementById("settings-continue");
+
+let weightsInputTbody = document.getElementById("weights-input-tbody");
+let weightsContinueButton = document.getElementById("weights-continue");
 
 let promptPara = document.getElementById("prompt");
 let responseInput = document.getElementById("response");
 let feedbackPara = document.getElementById("feedback");
 let checkButton = document.getElementById("check");
-
 let playCtnr = document.getElementById("play-container");
 let resultsCtnr = document.getElementById("results-container");
 let resultsHeading = document.getElementById("results-heading");
 let roundScorePara = document.getElementById("round-score");
 let resultsDiv = document.getElementById("results");
-let continueButton = document.getElementById("continue");
+let resultsContinueButton = document.getElementById("results-continue");
 
 
 let gameSettings = {
@@ -62,7 +65,8 @@ let gameState = {
     round: undefined,
 
     startRound: function(round) {
-        if (gameSettings.shuffle) gameState.shuffleCards();
+        if (gameSettings.shuffle) gameState.shuffleCards(); // TODO this doesn't shuffle weights!!!
+        // to fix this you need to upgrade to mapping
 
         // initialize game state
         gameState.currIdx = 0;
@@ -78,9 +82,10 @@ let gameState = {
 
     feedbackTimeoutID: undefined,
 }
+let weightsInputs = [];  // stores weights inputs when they're created
 
 
-goButton.onclick = function() {
+settingsContinueButton.onclick = function() {
     // input validation
     if (studySetInputTextarea.value === "") {
         inputValidationPara.innerHTML =
@@ -97,9 +102,10 @@ goButton.onclick = function() {
     else if (sansRadio.checked) gameSettings.font = "sans";
     else if (serifRadio.checked) gameSettings.font = "serif";
     else if (comicSansRadio.checked) gameSettings.font = "comic-sans";
+    weightsPane.classList.add(gameSettings.font)
     gamePane.classList.add(gameSettings.font);
 
-    // set up cards based on settings and start the game
+    // set up the cards based on the settings
     let set = studySetInputTextarea.value
     gameState.fullDeck = set.split(gameSettings.cardDelimiter);
     gameState.fullDeck = gameState.fullDeck.map(s => s.split(gameSettings.sideDelimiter));
@@ -107,16 +113,32 @@ goButton.onclick = function() {
     gameState.cards = Array.from(gameState.fullDeck);
     gameState.correctIdxs = new Set();
 
-    gameState.startRound(1);
-    
-    // TODO move to weights pane submit button
-    gameState.fullDeckWeights = (new Array(gameState.cards.length)).fill(2);
-    gameState.cardWeights = Array.from(gameState.fullDeckWeights);    // TODO temporary; instead get these from user
-
-    // show the game pane
+    // set up and show the weights pane
+    for (let i = 0; i < gameState.cards.length; i++) {
+        let newRow = document.createElement("tr");
+        let newCol1 = document.createElement("td");
+        let newCol2 = document.createElement("td");
+        let newInput = document.createElement("input");
+        newCol1.innerHTML = gameState.cards[i][0] + " - " + gameState.cards[i][1];
+        newInput.type = "number"; newInput.min = "1"; newInput.max = "100";
+        newInput.value = 1;
+        weightsInputs.push(newInput);
+        newCol2.appendChild(newInput);
+        newRow.appendChild(newCol1); newRow.appendChild(newCol2);
+        weightsInputTbody.appendChild(newRow);
+    }
     settingsPane.classList.add("inactive");
-    gamePane.classList.remove("inactive");
+    weightsPane.classList.remove("inactive");
+}
+weightsContinueButton.onclick = function() {
+    // save the weights that the user has input
+    gameState.fullDeckWeights = weightsInputs.map(input => Number(input.value));  // any problems from this?
+    gameState.cardWeights = Array.from(gameState.fullDeckWeights);
     
+    // show the game pane and start the game
+    weightsPane.classList.add("inactive");
+    gamePane.classList.remove("inactive");
+    gameState.startRound(1);
     responseInput.focus();
 }
 
@@ -163,10 +185,10 @@ function showResults() {
     // change heading and continue button, based on if finished or not
     if (gameState.cardWeights.every(x => x === 0)) {
         resultsHeading.innerHTML = "All finished, congratulations!"
-        continueButton.innerHTML = "Restart"
+        resultsContinueButton.innerHTML = "Restart"
     } else {
         resultsHeading.innerHTML = "Round " + gameState.round + " Results";
-        continueButton.innerHTML = "Continue to Round " + (gameState.round + 1);
+        resultsContinueButton.innerHTML = "Continue to Round " + (gameState.round + 1);
     }
 
     // show round score
@@ -188,9 +210,9 @@ function showResults() {
         resultsDiv.appendChild(newPara);
     });
 
-    continueButton.focus();
+    resultsContinueButton.focus();
 }
-continueButton.onclick = function() {
+resultsContinueButton.onclick = function() {
     playCtnr.classList.remove("inactive");
     resultsCtnr.classList.add("inactive");
 
