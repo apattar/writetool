@@ -80,6 +80,25 @@ let gameState = {
     feedbackTimeoutID: undefined,
 }
 
+// color scheme stuff
+let colorscheme = {
+    dark: function() {
+        let lightElts = document.querySelectorAll(".light");
+        lightElts.forEach(function(elt) {
+            elt.classList.remove("light");
+            elt.classList.add("dark");
+        })
+    },
+    light: function() {
+        let darkElts = document.querySelectorAll(".dark");
+        darkElts.forEach(function(elt) {
+            elt.classList.remove("dark");
+            elt.classList.add("light");
+        })
+    },
+    custom: function() {},  // provide colors as args, use inline styles to override CSS
+}
+
 
 goButton.onclick = function() {
     // input validation
@@ -187,7 +206,7 @@ function showResults() {
             newPara.innerHTML = gameSettings.incorrectIndicator + " ";
         }
         newPara.innerHTML += card[0] + " – " + card[1];
-        resultsDiv.appendChild(newPara);
+        resultsDiv.appendChild(newPara);    // TODO need to add colorscheme class; store as setting & check it
     });
 
     continueButton.focus();
@@ -219,7 +238,12 @@ continueButton.onclick = function() {
 }
 
 
-// shortcut stuff
+/* on load */
+
+// need this because there's no reliable way to add newlines in HTML :/
+studySetInputTextarea.placeholder = "term1 - definition1\nterm2 - definition2\n...";
+
+// set up some UX & shortcuts
 studySetInputTextarea.focus();
 responseInput.onkeydown = function(e) {
     if (e.key === "Enter") {
@@ -227,3 +251,5 @@ responseInput.onkeydown = function(e) {
         e.preventDefault();
     }
 }
+
+// set dark theme if that's the device's preference

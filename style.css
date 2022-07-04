@@ -1,7 +1,12 @@
 * {
     box-sizing: border-box;
 }
+.inactive {
+    display: none;
+}
 
+
+/* responsive design stuff */
 @media screen and (max-width: 450px) {
     /* #feedback {
         font-size: small !important;
@@ -12,16 +17,9 @@
         text-align: center;
     }
 }
-#feedback {
-    border: 2px solid grey;
-    border-radius: 5px;
-    padding: 0.5rem 1rem;
-    background-color: #f2f2f2;
-    font-size: large;
-    line-height: 1.5em;
-    min-height: 3em;
-}
 
+
+/* fonts */
 .monospace {
     font-family: monospace;
 }
@@ -41,10 +39,8 @@
     font-family: inherit;
 }
 
-.inactive {
-    display: none;
-}
 
+/* layout */
 h1 {
     margin: 2rem 0;
     text-align: center;
@@ -58,16 +54,12 @@ textarea {
 }
 fieldset {
     margin: 1rem 0;
-    background-color: #f2f2f2;
 }
 .pane {
-    border: 2px solid black;
+    border: 2px solid;
     border-radius: 10px;
     padding: 1rem;
     margin: 0.5rem;
-}
-#input-validation {
-    color: red;
 }
 button {
     display: block;
@@ -75,4 +67,53 @@ button {
     padding: 0.5rem;
     font-size: large;
     min-width: 10rem;
+}
+#feedback {
+    border: 2px solid;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    font-size: large;
+    line-height: 1.5em;
+    min-height: 3em;
+}
+
+
+/* color scheme */
+section.pane.light {
+    background-color: #f2f2f2;
+}
+fieldset.light {
+    background-color: #e4e4e4;
+}
+#input-validation.light {
+    color: red;
+}
+#feedback.light {
+    border-color: grey;
+    background-color: #e4e4e4;
+}
+
+body.dark {
+    background-color: black;
+}
+section.pane.dark {
+    border-color: #b0b0b0;
+    background-color: #4d4d4d;
+}
+fieldset.dark {
+    background-color: #404040;
+    border-color: #b0b0b0;
+}
+#feedback.dark {
+    background-color: #404040;
+    border-color: #b0b0b0;
+}
+input.dark, textarea.dark {
+    background-color: #e0e0e0;
+}
+#input-validation.dark {
+    color: #ffd0d0;
+}
+h1.dark, h2.dark, p.dark, label.dark, fieldset.dark {
+    color: white;
 }
